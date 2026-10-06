@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#EAE1D6">
+  <meta name="description" content="Something exciting is coming soon.">
+  <title>Coming Soon</title>
+  <style>
+    :root {
+      --cobalt: #0D2B63;
+      --terracotta: #C65A3A;
+      --warm-sand: #CDB39E;
+      --stone: #EAE1D6;
+      --cream: #F7F1E8;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body { width: 100%; min-height: 100%; margin: 0; }
+
+    body {
+      min-height: 100svh;
+      overflow: hidden;
+      background: var(--stone);
+      color: var(--cobalt);
+      font-family: "Bodoni MT", "Bodoni 72", Didot, "Times New Roman", serif;
+    }
+
+    .page {
+      position: relative;
+      isolation: isolate;
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      padding: max(32px, env(safe-area-inset-top)) max(22px, env(safe-area-inset-right)) max(32px, env(safe-area-inset-bottom)) max(22px, env(safe-area-inset-left));
+      background:
+        radial-gradient(circle at 50% 44%, rgba(255,255,255,.42), transparent 48%),
+        linear-gradient(135deg, rgba(255,255,255,.16), transparent 45%),
+        var(--stone);
+    }
+
+    .message {
+      position: relative;
+      z-index: 3;
+      width: min(90vw, 980px);
+      text-align: center;
+      transform: translateY(-1vh);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.05rem, 5.4vw, 5.25rem);
+      font-weight: 400;
+      line-height: 1.12;
+      letter-spacing: -0.025em;
+      text-transform: uppercase;
+      text-wrap: balance;
+    }
+
+    .rule {
+      width: clamp(108px, 18vw, 190px);
+      height: 2px;
+      margin: clamp(28px, 4.5vh, 48px) auto 0;
+      background: var(--cobalt);
+    }
+
+    .ribbon {
+      position: absolute;
+      z-index: 1;
+      width: 78vmax;
+      height: 11vmax;
+      pointer-events: none;
+      transform: rotate(-39deg);
+      filter: saturate(.92);
+    }
+
+    .ribbon::before,
+    .ribbon::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+    }
+
+    .ribbon::before {
+      background:
+        linear-gradient(to bottom,
+          var(--cobalt) 0 30%,
+          var(--cream) 30% 38%,
+          var(--terracotta) 38% 58%,
+          var(--cream) 58% 66%,
+          rgba(205,179,158,.50) 66% 100%);
+    }
+
+    .ribbon::after {
+      background: linear-gradient(90deg, rgba(255,255,255,.12), transparent 35%, rgba(13,43,99,.05));
+      mix-blend-mode: soft-light;
+    }
+
+    .ribbon-top {
+      top: -7.2vmax;
+      left: -28vmax;
+    }
+
+    .ribbon-bottom {
+      right: -29vmax;
+      bottom: -7.5vmax;
+    }
+
+    @media (max-width: 580px) {
+      .message { width: min(92vw, 530px); }
+      h1 { font-size: clamp(2rem, 10.6vw, 3.6rem); line-height: 1.10; }
+      .ribbon { width: 84vmax; height: 13vmax; }
+      .ribbon-top { top: -8.2vmax; left: -32vmax; }
+      .ribbon-bottom { right: -33vmax; bottom: -8.4vmax; }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .message { animation: reveal .9s ease-out both; }
+      @keyframes reveal {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(-1vh); }
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page" aria-label="Coming soon">
+    <div class="ribbon ribbon-top" aria-hidden="true"></div>
+    <section class="message">
+      <h1>Something exciting<br>is coming soon</h1>
+      <div class="rule" aria-hidden="true"></div>
+    </section>
+    <div class="ribbon ribbon-bottom" aria-hidden="true"></div>
+  </main>
+</body>
+</html>
